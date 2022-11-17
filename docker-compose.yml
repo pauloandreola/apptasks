@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+
+  app:
+    container_name: 'apptasks'
+    build: .
+    command: yarn dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/var/apptasks
+
+  db:
+    container_name: 'database-apptasks'
+    image: mysql
+    # command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=root
+      - MYSQL_PASSWORD=root
