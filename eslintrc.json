@@ -2,10 +2,12 @@
   "extends": [
     "airbnb-base",
     "plugin:import/typescript",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "prettier"],
   "parserOptions": {
     "ecmaVersion": 10,
     "sourceType": "module",
@@ -40,6 +42,7 @@
     "linebreak-style": 0,
     "import/prefer-default-export": "off",
     "no-useless-constructor": "off",
+    "prettier/prettier": "error",
     "@typescript-eslint/naming-convention": [
       "error",
       {
