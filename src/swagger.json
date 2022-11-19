@@ -15,7 +15,7 @@
     }
   ],
   "paths": {
-    "/User": {
+    "/User/": {
       "post": {
         "tags": [
           "Users"
