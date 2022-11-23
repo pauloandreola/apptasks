@@ -9,24 +9,18 @@
       "url": "https://dataside.com.br"
     }
   },
-  "servers": [
-    {
-      "url": "http://localhost:3000"
-    }
-  ],
+  "servers": [{ "url": "http://localhost:3000" }],
   "paths": {
     "/User/": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": [ "Users" ],
         "summary": "Create a user",
         "description": "Create a new user",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/teams_2"
+                "$ref": "#/components/schemas/user_01"
               }
             }
           }
@@ -66,7 +60,7 @@
                   },
                   "example": {
                     "name": "Paulo",
-                    "email": "paulo@gmail.com",
+                    "email": "teste@gmail.com",
                     "password": "123456"
                   }
                 }
@@ -299,7 +293,7 @@
   },
   "components": {
     "schemas": {
-      "teams": {
+      "users": {
         "properties": {
           "id": {
             "type": "string",
@@ -307,29 +301,25 @@
           },
           "name": {
             "type": "string",
-            "example": "Flamengo"
+            "example": "Teste"
           },
-          "coach": {
+          "email": {
             "type": "string",
-            "example": "Dorival Júnior"
+            "example": "teste@teste.com"
           },
-          "stadium": {
+          "password": {
             "type": "string",
-            "example": "Maracanã"
+            "example": "TESTE"
           },
-          "city": {
-            "type": "string",
-            "example": "Rio de Janeiro"
-          },
-          "players": {
+          "users": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/player"
+              "$ref": "#/components/schemas/user_01"
             }
           }
         }
       },
-      "teams_2": {
+      "user_01": {
         "properties": {
           "id": {
             "type": "string",
@@ -337,19 +327,15 @@
           },
           "name": {
             "type": "string",
-            "example": "Flamengo"
+            "example": "Paulo"
           },
-          "coach": {
+          "email": {
             "type": "string",
-            "example": "Dorival Júnior"
+            "example": "teste@gmail.com"
           },
-          "stadium": {
+          "password": {
             "type": "string",
-            "example": "Maracanã"
-          },
-          "city": {
-            "type": "string",
-            "example": "Rio de Janeiro"
+            "example": "A12345"
           }
         }
       },
