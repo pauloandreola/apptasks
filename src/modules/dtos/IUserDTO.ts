@@ -1,5 +1,10 @@
 export interface IUserDTO {
-  name: string,
-  email: string,
-  password: string,
+  id?: string;
+  name: string;
+  email: string;
+  admin?: boolean;
+  password: string;
+  avatar?: string;
+  created_at?: Date;
+  updated_at?: Date;
 }
