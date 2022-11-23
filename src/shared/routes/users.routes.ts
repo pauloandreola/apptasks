@@ -1,12 +1,27 @@
-import { Router } from "express";
+import { Router } from 'express';
+import multer from 'multer';
+
+// import uploadConfig from '../config/uploads';
+// import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 
 // import { CreateUserController } from "../../modules/users/useCases/createUser/createUserController";
-// import { UpdateUserController } from "../app/modules/accounts/useCases/updateUser/UpdateUserController";
+// import { LoginUserController } from "../../modules/users/useCases/loginUser/loginUserController";
+// import { UpdateUserAvatarController } from '../modules/accounts/useCases/updateUserAvatar/updateUserAvatarController';
+// import { UpdateUserController } from "../../modules/accounts/useCases/updateUser/updateUserController";
 
 export const usersRoutes = Router();
 
-usersRoutes.get("/",)
+// const uploadAvatar = multer(uploadConfig.upload('./tmp/avatar'));
 
-// usersRoutes.patch("/", updateUserController.handle);
+// const createUserController = new CreateUserController();
+// const loginUserController = new LoginUserController();
+// const updateUserAvatarController = new UpdateUserAvatarController();
+// const updateUserController = new UpdateUserController();
 
-// usersRoutes.post("/", (request, response) => CreateUserController.handle(request, response));
+// usersRoutes.post('/register', createUserController.handle);
+
+// usersRoutes.post('/login', loginUserController.handle);
+
+// usersRoutes.patch('/avatar', ensureAuthenticated, uploadAvatar.single('avatar'), updateUserAvatarController.handle);
+
+// usersRoutes.put('/update', updateUserController.handle);
