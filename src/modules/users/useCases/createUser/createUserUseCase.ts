@@ -1,21 +1,29 @@
-import { IUserDTO } from "../../../dtos/IUserDTO";
-import { UsersRepository } from "../../infra/repositories/implementations/usersRepository";
-
+import { hash } from 'bcryptjs';
+import { IUserDTO } from '../../../dtos/IUserDTO';
+import { IUsersRepository } from '../../repositories/IUsersRepository';
+import { AppError } from '../../../../errors/appError';
 
 export class CreateUserUseCase {
-  // constructor(private usersRepository: UsersRepository){}
+  constructor( private usersRepository: IUsersRepository,
+  ) {}
 
-  // async execute({name, email, password}:IUserDTO): Promise<void>{
+  async execute({
+    name,
+    email,
+    password, 
+  }: IUserDTO): Promise<void> {
+    const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
-  //        const userExist = await this.usersRepository.findByEmail(email);
+    if (userAlreadyExists) {
+      throw new AppError('User already exists');
+    }
 
-  //         if(userExist){
-  //             throw new Error("E-mail already exist");
-  //         }
+    const passwordHash = await hash(password, 8);
 
-  //         position  = position[0].toUpperCase() + position.substring(1) as any;
-
-  //        await this.usersRepository.addPlayer({name, email, password});
-      
-  // }
+    await this.usersRepository.create({
+      name,
+      email,
+      password: passwordHash,
+    });
+  }
 }
