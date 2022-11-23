@@ -24,4 +24,4 @@ export const usersRoutes = Router();
 
 // usersRoutes.patch('/avatar', ensureAuthenticated, uploadAvatar.single('avatar'), updateUserAvatarController.handle);
 
-// usersRoutes.put('/update', updateUserController.handle);
+// usersRoutes.put('/:id', updateUserController.handle);

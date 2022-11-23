@@ -14,12 +14,12 @@ export const tasksRoutes = Router();
 // const listTaskController = new ListTaskController();
 // const updateTaskController = new UpdateTaskController();
 
-// usersRoutes.post('/createtask', createTaskController.handle);
+// usersRoutes.post('/', createTaskController.handle);
 
-// usersRoutes.delete('/deletetask/:id', deleteTaskController.handle);
+// usersRoutes.delete('/:id', deleteTaskController.handle);
 
-// usersRoutes.get('/listalltask', listAllTasksController.handle);
+// usersRoutes.get('/', listAllTasksController.handle);
 
-// usersRoutes.get('/listtask/:id', listTaskController.handle);
+// usersRoutes.get('/:id', listTaskController.handle);
 
-// usersRoutes.put('/updatetask/:id', updateTaskController.handle);
+// usersRoutes.put('/:id', updateTaskController.handle);
