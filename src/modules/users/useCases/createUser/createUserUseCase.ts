@@ -1,11 +1,10 @@
 import { hash } from 'bcryptjs';
 import { IUserDTO } from '../../../dtos/IUserDTO';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
-import { AppError } from '../../../../errors/appError';
+import { AppError } from '../../../../errors/appErrors';
 
 export class CreateUserUseCase {
-  constructor( private usersRepository: IUsersRepository,
-  ) {}
+  constructor( private usersRepository: IUsersRepository ) {}
 
   async execute({
     name,
