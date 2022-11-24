@@ -11,7 +11,7 @@
   },
   "servers": [{ "url": "http://localhost:3000" }],
   "paths": {
-    "/User/": {
+    "/users/register/": {
       "post": {
         "tags": [ "Users" ],
         "summary": "Create a user",
@@ -20,7 +20,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/user_01"
+                "$ref": "#/components/schemas/user"
               }
             }
           }
@@ -30,16 +30,16 @@
             "description": "OK"
           },
           "400": {
-            "description": "Insert name, email and password and confirmpassword to create a new account."
+            "description": "Insert name, email, password and confirmpassword to create a new account."
           }
         }
-      },
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Get all Users",
-        "description": "Get all Users",
+      }
+    },
+    "/users/login/": {
+      "post": {
+        "tags": [ "Users" ],
+        "summary": "Login",
+        "description": "Login",
         "responses": {
           "200": {
             "description": "OK",
@@ -48,9 +48,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "name": {
-                      "type": "string"
-                    },
                     "email": {
                       "type": "string"
                     },
@@ -59,7 +56,6 @@
                     }
                   },
                   "example": {
-                    "name": "Paulo",
                     "email": "teste@gmail.com",
                     "password": "123456"
                   }
@@ -68,22 +64,63 @@
             }
           },
           "500": {
-            "description": "Empty list, or list not found."
+            "description": "Insert correct email or password."
           }
         }
       }
     },
-    "/user/id": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Get user",
-        "description": "Get user by Id",
+    "/users/avatar": {
+      "patch": {
+        "tags": [ "Users" ],
+        "summary": "Insert photo",
+        "description": "Insert a photo",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+            "application/json": {
+              "schema": {
+                 "type":  "object",
+                  "properties": {
+                    "userId": {
+                      "type": "integer"
+                    },
+
+                    "fileName": {
+                      "type": "string",
+                     "format": "binary"
+                    } 
+                  }
+                }
+              }
+            }  
+          }
+        },        
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user_photo"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
+    "/users/": {
+      "put": {
+        "tags": [ "Users" ],
+        "summary": "Edit user by id",
+        "description": "Edit a exist user by id",
         "parameters": [
           {
-            "name": "email",
-            "in": "body",
+            "name": "id",
+            "in": "header",
             "description": "The user Id",
             "required": true,
             "schema": {
@@ -97,29 +134,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/teams"
+                  "$ref": "#/components/schemas/user"
                 }
               }
-            }
+            }  
           },
-          "500": {
-            "description": "User not found."
+          "400": {
+            "description": "Insert a new name ."
           }
         }
-      }
+      }  
     },
-    "/players/": {
-      "put": {
-        "tags": [
-          "Players"
-        ],
-        "summary": "Create a player",
-        "description": "Create a new player",
+    "/tasks/": {
+      "post": {
+        "tags": [ "Tasks" ],
+        "summary": "Create a task",
+        "description": "Create a new task",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/player"
+                "$ref": "#/components/schemas/tasks"
               }
             }
           }
@@ -129,21 +164,19 @@
             "description": "OK"
           },
           "400": {
-            "description": "ERROR IN INTERNAL SERVER"
+            "description": "Internal server error"
           }
         }
       },
       "get": {
-        "tags": [
-          "Players"
-        ],
-        "summary": "Get players by id",
-        "description": "Get players by id",
+        "tags": [ "Tasks" ],
+        "summary": "List task by id",
+        "description": "List task by id",
         "parameters": [
           {
             "name": "id",
             "in": "header",
-            "description": "The player Id",
+            "description": "The task Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -156,22 +189,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/teams"
+                  "$ref": "#/components/schemas/tasks"
                 }
               }
             }
           },
           "400": {
-            "description": "Usuario não encontrado"
+            "description": "Task not found"
           }
         }
       },
-      "post": {
-        "tags": [
-          "Players"
-        ],
-        "summary": "Remove player",
-        "description": "Remove player from team by id",
+      "delete": {
+        "tags": [ "Tasks" ],
+        "summary": "Remove task by id",
+        "description": "Remove task ******from team****** by id",
         "requestBody": {
           "content": {
             "application/json": {
@@ -194,47 +225,19 @@
             "description": "OK"
           },
           "400": {
-            "description": "Usuário não encontrado"
+            "description": "****************User/task not found************"
           }
         }
-      }
-    },
-    "/players/goals": {
-      "get": {
-        "tags": [
-          "Players"
-        ],
-        "summary": "returns player with the most goals",
-        "description": "returns player with the most goals",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/player"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Não foi possível retornar o Jogador"
-          }
-        }
-      }
-    },
-    "/players/sum": {
-      "get": {
-        "tags": [
-          "Players"
-        ],
-        "summary": "returns the sum of all goals scored",
-        "description": "returns the sum of all goals scored",
+      },
+      "put": {
+        "tags": [ "Tasks" ],
+        "summary": "Edit task by id",
+        "description": "Edit a task by id",
         "parameters": [
           {
-            "name": "team_id",
+            "name": "id",
             "in": "header",
-            "description": "The team_id",
+            "description": "The task Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -247,45 +250,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "SUM(goals)": {
-                      "type": "number"
-                    }
-                  },
-                  "example": {
-                    "SUM(goals)": 20
-                  }
+                  "$ref": "#/components/schemas/tasks"
                 }
               }
-            }
+            }  
           },
-          "500": {
-            "description": "Não foi possível contabilizar o número de gols"
+          "400": {
+            "description": "Insert a correct task ."
           }
         }
-      }
+      }  
     },
-    "/players/positions": {
+    "/tasks": {
       "get": {
-        "tags": [
-          "Players"
-        ],
-        "summary": "list player by position",
-        "description": "list player by position",
+        "tags": [ "Tasks" ],
+        "summary": "List all tasks",
+        "description": "List all tasks",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/positions"
+                  "$ref": "#/components/schemas/tasks"
                 }
               }
             }
           },
           "500": {
-            "description": "Não foi possível listar os usuários com base em suas posições"
+            "description": "Tasks not found"
           }
         }
       }
@@ -293,37 +286,23 @@
   },
   "components": {
     "schemas": {
-      "users": {
+      "Task": {
         "properties": {
           "id": {
             "type": "string",
-            "example": "03d8a4b6-f4e3-4f23-afab-35fb8f364740"
+            "example": "6a2ee094-584a-472a-b05e-c9638483698d"
           },
-          "name": {
+          "task": {
             "type": "string",
-            "example": "Teste"
-          },
-          "email": {
-            "type": "string",
-            "example": "teste@teste.com"
-          },
-          "password": {
-            "type": "string",
-            "example": "TESTE"
-          },
-          "users": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/user_01"
-            }
+            "example": "Test task"
           }
         }
       },
-      "user_01": {
+      "User": {
         "properties": {
           "id": {
             "type": "string",
-            "example": "03d8a4b6-f4e3-4f23-afab-35fb8f364740"
+            "example": "b1ea8e82-95a9-44a3-915b-2cc991ad684d"
           },
           "name": {
             "type": "string",
@@ -339,51 +318,23 @@
           }
         }
       },
-      "player": {
+      "Department": {
         "properties": {
-          "id": {
-            "type": "string",
-            "example": "03d8a4b6-f4e3-4f23-afab-35fb8f364740"
-          },
-          "team_id": {
-            "type": "string",
-            "example": "03d8a4b6-f4e3-4f23-afab-35fb8f364740"
-          },
-          "name": {
-            "type": "string",
-            "example": "Marcos"
-          },
-          "age": {
-            "type": "number",
-            "example": 19
-          },
-          "position": {
-            "type": "string",
-            "example": "Defenders"
-          },
-          "goals": {
-            "type": "number",
-            "example": 29
-          }
-        }
-      },
-      "positions": {
-        "properties": {
-          "Goalkeeper": {
+          "Development": {
             "type": "array",
             "example": []
           },
-          "Defenders": {
+          "AI_01": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/player"
             }
           },
-          "Midfielder": {
+          "AI_02": {
             "type": "array",
             "example": []
           },
-          "Forward": {
+          "RPA": {
             "type": "array",
             "example": []
           }
