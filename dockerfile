@@ -1,6 +1,6 @@
 FROM node
 
-WORKDIR /var/apptasks
+WORKDIR /usr/app
 
 COPY  package.json ./
 
