@@ -327,7 +327,7 @@
           "AI_01": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/player"
+              "$ref": "#/components/schemas/user"
             }
           },
           "AI_02": {
