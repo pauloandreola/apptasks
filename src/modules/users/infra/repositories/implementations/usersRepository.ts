@@ -5,8 +5,17 @@ import { IUsersRepository } from "../IUsersRepository"
 
 export class UsersRepository implements IUsersRepository {
   constructor() {}
-  addUser(data: IUserDTO): Promise<void> {
-    throw new Error("Method not implemented.");
+  async addUser({userId, name, email, admin, password, avatar, department, created_at, updated_at}: IUserDTO): Promise<void> {
+    conn.connect(function(err) {
+      if (err) throw err;
+      var sql = `INSERT INTO
+      users (userId, name, email, admin, password, avatar, department, created_at, updated_at)
+      VALUES (?,?,?,?,?,?,?,?,?)`
+      conn.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("User included");
+      });
+    });
   }
   async createUserTable(): Promise<void> {
     conn.connect(function(err) {
@@ -14,7 +23,7 @@ export class UsersRepository implements IUsersRepository {
       console.log("Connected!");
       var sql = `CREATE TABLE IF NOT EXISTS
       users (
-        userID VARCHAR(100) PRIMARY KEY NOT NULL,
+        userId VARCHAR(100) PRIMARY KEY NOT NULL,
         name VARCHAR(255),
         email VARCHAR(255),
         admin BOOLEAN,
@@ -35,53 +44,4 @@ export class UsersRepository implements IUsersRepository {
   findById(id: string): Promise<User> {
     throw new Error("Method not implemented.");
   }
-
-  // addUser(data: IUserDTO): Promise<void> {
-  //   throw new Error("Method not implemented.");
-  // }
-  // // async createTable(): Promise<void> {
-  // //   await conn().then
-  // // }
-  // findByEmail(email: string): Promise<User> {
-  //   throw new Error("Method not implemented.");
-  // }
-  // findById(id: string): Promise<User> {
-  //   throw new Error("Method not implemented.");
-  // }
-
 }
-
-// export class UsersRepository implements IUsersRepository {
-//   private repository: Promise<User>;
-
-//   constructor() {
-//     this.repository = AppDataSource.getRepository(User);
-//   }
-
-//   async create({
-//     name,
-//     email,
-//     password,
-//     id,
-//     avatar,
-//   }: IUserDTO): Promise<void> {
-//     const user = this.repository.create({
-//       name,
-//       email,
-//       password,
-//       id,
-//       avatar,
-//     });
-
-//     await this.repository.save(user);
-//   }
-
-//   async findByEmail(email: string): Promise<User> {
-//     const user = await this.repository.findOneBy({ email });
-//     return user;
-//   }
-
-//   async findById(id: string): Promise<User> {
-//     const user = await this.repository.findOneBy({ id });
-//     return user;
-//   }
