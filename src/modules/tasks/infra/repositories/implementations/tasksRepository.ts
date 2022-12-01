@@ -13,7 +13,18 @@ export class TasksRepository implements ITasksRepository {
     conn.connect(function(err) {
       if (err) throw err;
       console.log("Connected!");
-      var sql = `CREATE TABLE tasks (id INT(10) PRIMARY KEY auto_increment, task VARCHAR(20), created_at DATE, update_at DATE, start_date DATE, end_date DATE, total int)`;
+      var sql = `CREATE TABLE IF NOT EXISTS
+      tasks (
+        taskID VARCHAR(100) PRIMARY KEY NOT NULL,
+        task VARCHAR(255),
+        created_at TIMESTAMP,
+        update_at TIMESTAMP,
+        start_date TIMESTAMP,
+        end_date TIMESTAMP,
+        total INTEGER,
+        userID VARCHAR(100),
+        CONSTRAINT FK_UserID FOREIGN KEY (userID)
+        REFERENCES users(userID))`;
       conn.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table created");

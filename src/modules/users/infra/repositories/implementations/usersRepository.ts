@@ -12,7 +12,17 @@ export class UsersRepository implements IUsersRepository {
     conn.connect(function(err) {
       if (err) throw err;
       console.log("Connected!");
-      var sql = `CREATE TABLE users (id INT(10) PRIMARY KEY auto_increment, name VARCHAR(255), email VARCHAR(255), admin BOOLEAN, password, created_at DATE, update_at DATE, start_date DATE, end_date DATE, FOREIGN KEY(user_id), total INTEGER)`;
+      var sql = `CREATE TABLE IF NOT EXISTS
+      users (
+        userID VARCHAR(100) PRIMARY KEY NOT NULL,
+        name VARCHAR(255),
+        email VARCHAR(255),
+        admin BOOLEAN,
+        password VARCHAR(100),
+        avatar LONGBLOB,
+        department VARCHAR(50),
+        created_at TIMESTAMP,
+        update_at TIMESTAMP)`;
       conn.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table created");
