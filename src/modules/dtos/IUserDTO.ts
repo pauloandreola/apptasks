@@ -1,5 +1,5 @@
 export interface IUserDTO {
-  id?: string,
+  userId: string,
   name: string,
   email: string,
   admin?: boolean,

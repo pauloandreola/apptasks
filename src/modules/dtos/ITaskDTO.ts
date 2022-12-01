@@ -1,5 +1,5 @@
 export interface ITaskDTO {
-  id?: string,
+  taskId: string,
   task: string,
   created_at?: Date,
   updated_at?: Date,

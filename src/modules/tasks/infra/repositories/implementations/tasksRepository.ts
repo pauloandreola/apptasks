@@ -15,7 +15,7 @@ export class TasksRepository implements ITasksRepository {
       console.log("Connected!");
       var sql = `CREATE TABLE IF NOT EXISTS
       tasks (
-        taskID VARCHAR(100) PRIMARY KEY NOT NULL,
+        taskId VARCHAR(100) PRIMARY KEY NOT NULL,
         task VARCHAR(255),
         created_at TIMESTAMP,
         update_at TIMESTAMP,
