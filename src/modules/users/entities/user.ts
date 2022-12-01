@@ -1,5 +1,5 @@
 export class User {
-  'id': string;
+  'userId': string;
   'name': string;
   'email': string;
   'admin': boolean;
@@ -9,8 +9,8 @@ export class User {
   'created_at': Date;
   'updated_at': Date;
 
-  constructor(id: string, name: string, email: string, admin: boolean, password: string, avatar: string, department: "Development" | "IA" | "RPA", created_at: Date, updated_at: Date) {
-    id: id;
+  constructor(userId: string, name: string, email: string, admin: boolean, password: string, avatar: string, department: "Development" | "IA" | "RPA", created_at: Date, updated_at: Date) {
+    userId: userId;
     name: name;
     email: email;
     admin: admin;

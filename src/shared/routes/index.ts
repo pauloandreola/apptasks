@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { TasksRepository } from '../../modules/tasks/infra/repositories/implementations/tasksRepository';
 import { UsersRepository } from '../../modules/users/infra/repositories/implementations/usersRepository';
-import { tasksRoutes } from './tasks.routes';
-import { usersRoutes } from './users.routes';
+import { tasksRoutes } from '../../modules/tasks/routes/tasks.routes';
+import { usersRoutes } from '../../modules/users/routes/users.routes';
 
 export const router = Router();
 
