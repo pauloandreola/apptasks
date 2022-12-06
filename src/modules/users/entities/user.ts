@@ -1,3 +1,5 @@
+import { v4 as uuidV4 } from 'uuid';
+
 export class User {
   'userId': string;
   'name': string;
@@ -20,4 +22,5 @@ export class User {
     created_at: created_at;
     updated_at: updated_at;
   }
+
 }

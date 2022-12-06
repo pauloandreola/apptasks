@@ -8,4 +8,5 @@ export interface IUserDTO {
   department?: "Development" | "IA" | "RPA",
   created_at?: Date,
   updated_at?: Date,
+  confpassword?: string,
 }
