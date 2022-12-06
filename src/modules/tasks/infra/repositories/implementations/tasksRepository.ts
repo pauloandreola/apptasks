@@ -6,20 +6,29 @@ import { ITasksRepository } from "../ITasksRepository";
 export class TasksRepository implements ITasksRepository {
 
   constructor() {}
-  addTask(data: ITaskDTO): Promise<void> {
-    throw new Error("Method not implemented.");
+  async addTask({taskId, project, task, created_at, updated_at, end_at, total}: ITaskDTO): Promise<void> {
+    conn.connect(function(err) {
+      if (err) throw err;
+      var sql = `INSERT INTO
+      tasks (taskId, project, task, created_at, updated_at, end_at, total)
+      VALUES (?,?,?,?,?,?,?)`;
+      conn.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Task included");
+      });
+    });
   }
   async createTaskTable(): Promise<void> {
     conn.connect(function(err) {
       if (err) throw err;
-      console.log("Connected!");
+      console.log("MySQL to create task table Connected!");
       var sql = `CREATE TABLE IF NOT EXISTS
       tasks (
         taskId VARCHAR(100) PRIMARY KEY NOT NULL,
+        project VARCHAR(255),
         task VARCHAR(255),
-        created_at TIMESTAMP,
-        update_at TIMESTAMP,
-        start_date TIMESTAMP,
+        created_at TIMESTAMP default now(),
+        updated_at TIMESTAMP,
         end_date TIMESTAMP,
         total INTEGER,
         userID VARCHAR(100),
@@ -27,15 +36,22 @@ export class TasksRepository implements ITasksRepository {
         REFERENCES users(userID))`;
       conn.query(sql, function (err, result) {
         if (err) throw err;
-        console.log("Table created");
+        console.log("If not exists task table created!");
       });
     });    
   }
   findByTask(task: string): Promise<Task> {
     throw new Error("Method not implemented.");
   }
-  findById(id: string): Promise<Task> {
-    throw new Error("Method not implemented.");
+  async findById(id: string): Promise<any> {
+    conn.connect(function(err) {
+      if (err) throw err;
+      var sql = `SELECT * FROM tasks WHERE id = ?`;
+      conn.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Task founded");
+      });
+    });
   }
 
 }
