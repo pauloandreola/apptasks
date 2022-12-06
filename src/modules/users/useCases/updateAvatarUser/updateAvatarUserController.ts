@@ -3,7 +3,7 @@ import { UpdateAvatarUserUseCase } from '../updateAvatarUser/updateAvatarUserUse
 
 export class UpdateAvatarUserController {
   async handle(request: Request, response: Response): Promise<Response> {
-//     const { id } = request.user;
+//     const { id } = request.user.params;
 //     const avatarFile = request.file.filename;
 
 //     const updateAvatarUserUseCase = resolve(UpdateAvatarUserUseCase);
