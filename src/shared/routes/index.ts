@@ -13,6 +13,6 @@ const createTableTaskRepository = new TasksRepository();
 createTableTaskRepository.createTaskTable();
 
 router.use('/tasks', tasksRoutes);
-console.log("Passando pelo routes 02 task");
+
 router.use('/users', usersRoutes);
-console.log("Passando pelo routes 01 user");
+
