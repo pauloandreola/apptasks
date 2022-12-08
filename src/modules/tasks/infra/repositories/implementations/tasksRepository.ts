@@ -17,6 +17,7 @@ export class TasksRepository implements ITasksRepository {
         console.log("Task included");
       });
     });
+    conn.end();
   }
   async createTaskTable(): Promise<void> {
     conn.connect(function(err) {
@@ -38,7 +39,8 @@ export class TasksRepository implements ITasksRepository {
         if (err) throw err;
         console.log("If not exists task table created!");
       });
-    });    
+    });
+    conn.end();    
   }
   findByTask(task: string): Promise<Task> {
     throw new Error("Method not implemented.");
@@ -52,6 +54,7 @@ export class TasksRepository implements ITasksRepository {
         console.log("Task founded");
       });
     });
+    conn.end();
   }
 
 }

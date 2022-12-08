@@ -16,6 +16,7 @@ export class UsersRepository implements IUsersRepository {
         console.log("User included");
       });
     });
+    conn.end();
   }
   async createUserTable(): Promise<void> {
 
@@ -37,7 +38,8 @@ export class UsersRepository implements IUsersRepository {
         if (err) throw err;
         console.log("If not exists user table created!");
       });
-    });  
+    }); 
+    conn.end();
   }
   findByEmail(email: string): Promise<User> {
     throw new Error("Method not implemented.");
