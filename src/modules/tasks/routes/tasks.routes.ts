@@ -1,25 +1,19 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-// import { CreateTaskController } from "../../modules/users/useCases/createTask/createTaskController";
-// import { DeleteUserController } from "../../modules/users/useCases/deleteTask/deleteTaskController";
-// import { ListAllTasksController } from '../modules/accounts/useCases/listAllTasks/listAllTasksController';
-// import { ListTaskController } from '../modules/accounts/useCases/listTask/listTaskController';
-// import { UpdateTaskController } from "../../modules/accounts/useCases/updateTask/updateTaskController";
+import { createTaskController } from "../useCases/createTask";
+import { deleteTaskController } from "../useCases/deleteTask";
+import { listAllTasksController } from '../useCases/listAllTasks';
+import { listTaskController } from '../useCases/listTask';
+import { updateTaskController } from "../useCases/updateTask";
 
 export const tasksRoutes = Router();
 
-// const createTaskController = new CreateTaskController();
-// const deleteTaskController = new DeleteTaskController();
-// const listAllTasksController = new ListAllTasksController();
-// const listTaskController = new ListTaskController();
-// const updateTaskController = new UpdateTaskController();
+tasksRoutes.post('/', (request, response) => createTaskController.handle(request, response));
 
-// usersRoutes.post('/', createTaskController.handle);
+tasksRoutes.delete('/:id', (request, response) => deleteTaskController.handle(request, response));
 
-// usersRoutes.delete('/:id', deleteTaskController.handle);
+tasksRoutes.get('/', (request, response) => listAllTasksController.handle(request, response));
 
-// usersRoutes.get('/', listAllTasksController.handle);
+tasksRoutes.get('/:id', (request, response) => listTaskController.handle(request, response));
 
-// usersRoutes.get('/:id', listTaskController.handle);
-
-// usersRoutes.put('/:id', updateTaskController.handle);
+tasksRoutes.put('/:id', (request, response) => updateTaskController.handle(request, response));
