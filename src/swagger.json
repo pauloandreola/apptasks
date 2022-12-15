@@ -81,7 +81,7 @@
               "schema": {
                  "type":  "object",
                   "properties": {
-                    "userId": {
+                    "user_id": {
                       "type": "integer"
                     },
 
