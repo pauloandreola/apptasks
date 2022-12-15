@@ -1,7 +1,6 @@
-import { NamedDeclaration } from "typescript";
 import { conn } from "../../../../../shared/infra/services/db";
+
 import { IUserDTO } from "../../../../dtos/IUserDTO";
-import { User } from "../../../entities/user";
 import { IUsersRepository } from "../IUsersRepository"
 
 export class UsersRepository implements IUsersRepository {

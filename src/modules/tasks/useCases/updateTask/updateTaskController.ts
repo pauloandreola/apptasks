@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+
 import { UpdateTaskUseCase } from "./updateTaskUseCase";
 
 export class UpdateTaskController {

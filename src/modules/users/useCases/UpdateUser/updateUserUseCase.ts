@@ -1,4 +1,5 @@
 import { AppError } from "../../../../errors/appErrors";
+
 import { IUsersRepository } from "../../infra/repositories/IUsersRepository";
 
 export class UpdateUserUseCase {

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 import { UpdateAvatarUserUseCase } from '../updateAvatarUser/updateAvatarUserUseCase';
 
 export class UpdateAvatarUserController {

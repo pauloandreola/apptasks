@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+
 import { UpdateUserUseCase } from "./updateUserUseCase";
 
 export class UpdateUserController {
