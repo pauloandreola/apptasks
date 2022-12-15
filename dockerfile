@@ -1,13 +1,13 @@
 FROM node
 
-WORKDIR /usr/apptasks
+WORKDIR /usr/app
 
 COPY  package.json ./
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
 EXPOSE 3000
 
-CMD [ "yarn", "dev" ]
+CMD [ "npm","run","dev" ]
