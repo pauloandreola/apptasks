@@ -1,4 +1,5 @@
 import { hash } from 'bcryptjs';
+
 import { AppError } from '../../../../errors/appErrors';
 
 import { IUserDTO } from '../../../dtos/IUserDTO';

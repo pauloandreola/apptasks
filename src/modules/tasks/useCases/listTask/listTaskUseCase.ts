@@ -1,3 +1,5 @@
+import { AppError } from "../../../../errors/appErrors";
+
 import { ITasksRepository } from "../../infra/repositories/ITasksRepository";
 
 export class ListTaskUseCase {
@@ -6,7 +8,7 @@ export class ListTaskUseCase {
     const task = await this.tasksRepository.findById(task_id);
 
     if (!task) {
-      throw new Error("Task not found");
+      throw new AppError("Task not found");
     }
     return task;
   }

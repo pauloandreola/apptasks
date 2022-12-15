@@ -1,3 +1,5 @@
+import { AppError } from "../../../../errors/appErrors";
+
 import { Task } from "../../entities/task";
 import { ITasksRepository } from "../../infra/repositories/ITasksRepository";
 
@@ -7,7 +9,7 @@ export class ListAllTasksUseCase {
     const tasks = await this.tasksRepository.listAllTasks();
 
     if (!tasks) {
-      throw new Error("Tasks not found");
+      throw new AppError("Tasks not found");
     }
     return tasks;
   }
