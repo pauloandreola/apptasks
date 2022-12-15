@@ -6,12 +6,12 @@ import { IUsersRepository } from "../IUsersRepository"
 export class UsersRepository implements IUsersRepository {
   constructor() {}
 
-  async addUser({user_id, name, email, admin, password, department}: IUserDTO): Promise<void> {
+  async addUser({ name, email, password, department}: IUserDTO): Promise<void> {
     conn.connect(function(err) {
       if (err) throw err;
       var sql = `INSERT INTO
-      users (user_id, name, email, admin, password, department)
-      VALUES (?,?,?,?,?,?)`
+      users (name, email, password, department)
+      VALUES (?,?,?,?)`
       conn.query(sql, function (err, result) {
         if (err) throw err;
         console.log("User included", result);

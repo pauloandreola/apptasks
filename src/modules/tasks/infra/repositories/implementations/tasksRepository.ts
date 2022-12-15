@@ -6,12 +6,12 @@ import { ITasksRepository } from "../ITasksRepository";
 export class TasksRepository implements ITasksRepository {
   constructor() {}
 
-  async addTask({task_id, project, task, created_at, updated_at, start_date, end_date, total}: ITaskDTO): Promise<void> {
+  async addTask({project, task}: ITaskDTO): Promise<void> {
     conn.connect(function(err) {
       if (err) throw err;
       var sql = `INSERT INTO
-      tasks (task_id, users_id, project, task, created_at, updated_at, start_date, end_date, total)
-      VALUES (?,?,?,?,?,?,?)`;
+      tasks (project, task)
+      VALUES (?,?)`;
       conn.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Task included", result);
