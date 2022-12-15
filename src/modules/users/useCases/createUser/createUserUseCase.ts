@@ -1,12 +1,18 @@
 import { hash } from 'bcryptjs';
+import { AppError } from '../../../../errors/appErrors';
+
 import { IUserDTO } from '../../../dtos/IUserDTO';
 import { IUsersRepository } from '../../infra/repositories/IUsersRepository';
-import { AppError } from '../../../../errors/appErrors';
 
 export class CreateUserUseCase {
   constructor( private usersRepository: IUsersRepository ) {}
 
   async execute({ name, email, password, department, confpassword }: IUserDTO): Promise<void> {
+    
+    if (password != confpassword) {
+      throw new AppError('Email or password incorrect');
+    }
+    
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
