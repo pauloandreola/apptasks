@@ -5,6 +5,6 @@ export interface IUsersRepository {
   addUser(data: IUserDTO): Promise<void>;
   createUserTable(): Promise<void>;
   findByEmail(email: string): Promise<User>;
-  findById(id: string): Promise<User>;
-
+  findById(user_id: string): Promise<User>;
+  updateUser(user_id: string): Promise<User>;
 }
