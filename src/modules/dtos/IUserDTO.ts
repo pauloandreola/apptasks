@@ -1,12 +1,12 @@
 export interface IUserDTO {
-  userId?: string,
+  user_id?: string,
   name: string,
   email: string,
   admin?: boolean,
   password: string,
+  confpassword?: string,
   avatar?: string,
   department?: "Development" | "IA" | "RPA",
-  created_at?: Date,
-  updated_at?: Date,
-  confpassword?: string,
+  created_at?: number
+
 }
