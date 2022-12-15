@@ -8,7 +8,7 @@ export class UpdateUserController {
     try {
       const { task_id } = request.params;
       await this.updateUserUseCase.execute(task_id);
-      return response.json("Task updated");
+      return response.json("User updated");
     } catch (error) {
       return response.status(405).json(error);
     }
